@@ -1,0 +1,12 @@
+[submodule "dep/riscv-dv"]
+	path = dep/riscv-dv
+	url = https://github.com/chipsalliance/riscv-dv.git
+[submodule "dep/riscv-torture"]
+	path = dep/riscv-torture
+	url = https://github.com/ucb-bar/riscv-torture
+[submodule "dep/riscv-isa-sim"]
+	path = dep/riscv-isa-sim
+	url = https://github.com/riscv-software-src/riscv-isa-sim
+[submodule "dep/cva6"]
+	path = dep/cva6
+	url = https://github.com/openhwgroup/cva6.git
