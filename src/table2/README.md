@@ -2,8 +2,9 @@
 
 The assembly programs and binaries under the `bugs` directory are test cases to trigger the bug discovered by MorFuzz.
 You can get more information on each bug from Table 2 and Section 5.2 in the paper.
-b2 rely on b3 to set up the environment (i.e., the vsstatus register), therefore they are combined into one test case.
+b2 relies on b3 to set up the environment (i.e., the vsstatus register), therefore they are combined into one test case.
 b4 and b13 are the same bug, they share one test case, and so do b5 and b14.
+Therefore, there are 16 test cases in total.
 
 The code and scripts under the `boom`, `cva6`, and `rocket` directories are used by the RTL simulator to generate a host executable binary to simulate the hardware design, i.e., the processor.
 The above three directories are the hardware designs of BOOM, CVA6, and Rocket, respectively.
