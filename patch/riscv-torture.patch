@@ -1,0 +1,37 @@
+diff --git a/Makefile b/Makefile
+index a85579f..81e405f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -21,6 +21,7 @@ cnight rnight crnight csuite rsuite \
+ 
+ gen:
+ 	$(SBT) 'generator/run $(OPTIONS)'
++	cd output; make
+ 
+ csuite:
+ 	for i in `ls $(SUITE) | grep .S` ; do echo $$i ; \
+diff --git a/output/Makefile b/output/Makefile
+index cf1214f..ab89768 100644
+--- a/output/Makefile
++++ b/output/Makefile
+@@ -20,8 +20,9 @@ extra_files =
+ #--------------------------------------------------------------------
+ 
+ RISCV_GCC = riscv64-unknown-elf-gcc
+-RISCV_GCC_OPTS = -nostdlib -nostartfiles -Wa,-march=RVIMAFDXhwacha
++RISCV_GCC_OPTS = -nostdlib -nostartfiles -Wa,-march=rv64g_zicsr_zifencei
+ RISCV_OBJDUMP = riscv64-unknown-elf-objdump --disassemble-all --section=.text --section=.data --section=.bss
++RISCV_OBJCOPY = riscv64-unknown-elf-objcopy --gap-fill 0 --set-section-flags .bss=alloc,load,contents --set-section-flags .sbss=alloc,load,contents --set-section-flags .tbss=alloc,load,contents -O binary
+ RISCV_SIM = spike --extension=hwacha
+ 
+ #------------------------------------------------------------
+@@ -39,7 +40,8 @@ $(asm_tests_bin): %: %.S $(extra_files)
+ 	$(RISCV_GCC) $(RISCV_GCC_OPTS) -I../env/p -T../env/p/link.ld $< -o $@
+ 
+ $(asm_tests_hex): %.hex: % $(extra_files)
+-	elf2hex 16 16384 $< > $@
++	$(RISCV_OBJCOPY) $< tmp.bin
++	od -v -An -tx8 tmp.bin > $@
+ 
+ $(asm_tests_sig): %.sig: %
+ 	$(RISCV_SIM) +signature=$@ $<

@@ -1,0 +1,31 @@
+diff --git a/run.py b/run.py
+index 0ce4696..29b7844 100644
+--- a/run.py
++++ b/run.py
+@@ -440,7 +440,7 @@ def gcc_compile(test_list, output_dir, isa, mabi, opts, debug_cmd):
+             # If march/mabi is not defined in the test gcc_opts, use the default
+             # setting from the command line.
+             if not re.search('march', cmd):
+-                cmd += (" -march={}".format(test_isa))
++                cmd += (" -march={}_zifencei_zicsr".format(test_isa))
+             if not re.search('mabi', cmd):
+                 cmd += (" -mabi={}".format(mabi))
+             logging.info("Compiling {}".format(asm))
+@@ -490,7 +490,7 @@ def run_assembly(asm_test, iss_yaml, isa, mabi, gcc_opts, iss_opts, output_dir,
+          -T{}/scripts/link.ld {} -o {} ".format(
+         get_env_var("RISCV_GCC", debug_cmd=debug_cmd), asm_test, cwd,
+         cwd, gcc_opts, elf))
+-    cmd += (" -march={}".format(isa))
++    cmd += (" -march={}_zifencei_zicsr".format(isa))
+     cmd += (" -mabi={}".format(mabi))
+     run_cmd_output(cmd.split(), debug_cmd=debug_cmd)
+     # Convert the ELF to plain binary, used in RTL sim
+@@ -582,7 +582,7 @@ def run_c(c_test, iss_yaml, isa, mabi, gcc_opts, iss_opts, output_dir,
+          -T{}/scripts/link.ld {} -o {} ".format(
+         get_env_var("RISCV_GCC", debug_cmd=debug_cmd), c_test, cwd,
+         cwd, gcc_opts, elf))
+-    cmd += (" -march={}".format(isa))
++    cmd += (" -march={}_zifencei_zicsr".format(isa))
+     cmd += (" -mabi={}".format(mabi))
+     run_cmd_output(cmd.split(), debug_cmd=debug_cmd)
+     # Convert the ELF to plain binary, used in RTL sim
