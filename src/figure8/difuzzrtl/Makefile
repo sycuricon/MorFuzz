@@ -19,7 +19,7 @@ $(error $$DEPENDENCY is undefined, please set $$DEPENDENCY first)
 endif
 
 ifndef DIFUZZRTL_INPUT
-$(error $$DIFUZZRTL_INPUT is undefined, please set $$DEPENDENCY first)
+$(error $$DIFUZZRTL_INPUT is undefined, please set $$DIFUZZRTL_INPUT first)
 endif
 
 GCC_VERSION	:= $(word 1, $(subst ., ,$(shell gcc -dumpversion)))
