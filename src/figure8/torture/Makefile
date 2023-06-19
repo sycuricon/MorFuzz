@@ -43,11 +43,9 @@ VCS_INCLUDE	:= $(ROCKET_BUILD)+$(TB_DIR)
 VCS_CFLAGS	:= -std=c++17 $(addprefix -I,$(SPIKE_INCLUDE)) -I$(ROCKET_BUILD)
 VCS_TB_VLOG ?= $(TB_DIR)/$(VCS_TB).v
 
-TESTCASE_ROOT	?= /eda/project/riscv-tests/build/isa
-TESTCASE		:= rv64ui-p-simple
-TESTCASE_ELF	:= $(TESTCASE_ROOT)/$(TESTCASE)
-TESTCASE_BIN	:= $(shell mktemp)
-TESTCASE_HEX	:= $(TESTCASE_ROOT)/$(TESTCASE).hex
+TORTURE_DIR := $(DEPENDENCY)/riscv-torture
+TESTCASE_ELF	:= $(TORTURE_DIR)/output/test
+TESTCASE_HEX	:= $(TORTURE_DIR)/output/test.hex
 
 VERILOG_SRC	:= $(shell find $(TOP)/vsrc -name "*.v" -o -name "*.vh" -o -name "*.sv")
 VCS_SRC_C	:= $(SPIKE_LIB) $(TB_DIR)/spike_difftest.cc $(TB_DIR)/timer.cc
@@ -82,16 +80,10 @@ $(VCS_SIMV): $(VERILOG_SRC) $(VCS_SRC_V) $(VCS_SRC_C) $(SPIKE_LIB)
 	cd $(VCS_BUILD); $(SCL_PREFIX) vcs $(VCS_OPTION) -l $(VCS_LOG)/vcs.log -top $(VCS_TB) \
 		$(VERILOG_SRC) $(VCS_SRC_V) $(VCS_SRC_C) -o $@
 
-$(TESTCASE_HEX): $(TESTCASE_ELF)
-	riscv64-unknown-elf-objcopy --gap-fill 0			\
-		--set-section-flags .bss=alloc,load,contents	\
-		--set-section-flags .sbss=alloc,load,contents	\
-		--set-section-flags .tbss=alloc,load,contents	\
-		-O binary $< $(TESTCASE_BIN)
-	od -v -An -tx8 $(TESTCASE_BIN) > $@
-	rm $(TESTCASE_BIN)
+init:
+	cd $(TORTURE_DIR); make
 
-vcs: $(VCS_SIMV) $(TESTCASE_HEX)
+vcs: $(VCS_SIMV) init
 	mkdir -p $(VCS_BUILD) $(VCS_LOG) $(VCS_WAVE)
 	cd $(VCS_BUILD); time $(VCS_SIMV) -quiet +ntb_random_seed=10 $(VSIM_OPTION)
 

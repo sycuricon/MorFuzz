@@ -44,8 +44,8 @@ VCS_INCLUDE	:= $(ROCKET_BUILD)+$(TB_DIR)
 VCS_CFLAGS	:= -std=c++17 $(addprefix -I,$(SPIKE_INCLUDE)) -I$(ROCKET_BUILD)
 VCS_TB_VLOG ?= $(TB_DIR)/$(VCS_TB).v
 
-TESTCASE_ELF	:= $(DEPENDENCY)/riscv-dv/testcase/asm_test/riscv_arithmetic_basic_test_0
-TESTCASE_HEX	:= $(DEPENDENCY)/riscv-dv/testcase/asm_test/riscv_arithmetic_basic_test_0.hex
+TESTCASE_ELF	:= $(DEPENDENCY)/riscv-dv/testcase_fig8/asm_test/riscv_arithmetic_basic_test_0
+TESTCASE_HEX	:= $(DEPENDENCY)/riscv-dv/testcase_fig8/asm_test/riscv_arithmetic_basic_test_0.hex
 
 VERILOG_SRC	:= $(shell find $(TOP)/vsrc -name "*.v" -o -name "*.vh" -o -name "*.sv")
 VCS_SRC_C	:= $(SPIKE_LIB) $(TB_DIR)/spike_difftest.cc $(TB_DIR)/timer.cc
@@ -81,7 +81,7 @@ $(VCS_SIMV): $(VERILOG_SRC) $(VCS_SRC_V) $(VCS_SRC_C) $(SPIKE_LIB)
 		$(VERILOG_SRC) $(VCS_SRC_V) $(VCS_SRC_C) -o $@
 
 init:
-	cd $(DV_DIR); python3 run.py -o testcase --target rv64gc --test=riscv_arithmetic_basic_test --seed 10 --steps gen; python3 run.py -o testcase --target rv64gc --test=riscv_arithmetic_basic_test --seed 10 --steps gcc_compile; od -v -An -tx8 testcase/asm_test/riscv_arithmetic_basic_test_0.bin > testcase/asm_test/riscv_arithmetic_basic_test_0.hex
+	cd $(DV_DIR); python3 run.py -o testcase_fig8 --target rv64gc --test=riscv_arithmetic_basic_test --seed 10 --steps gen; python3 run.py -o testcase_fig8 --target rv64gc --test=riscv_arithmetic_basic_test --seed 10 --steps gcc_compile; od -v -An -tx8 testcase_fig8/asm_test/riscv_arithmetic_basic_test_0.bin > testcase_fig8/asm_test/riscv_arithmetic_basic_test_0.hex
 
 vcs: $(VCS_SIMV) init
 	mkdir -p $(VCS_BUILD) $(VCS_LOG) $(VCS_WAVE)

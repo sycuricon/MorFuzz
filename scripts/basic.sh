@@ -23,6 +23,6 @@ cd $ARTIFACT_ROOT/src/table2/cva6
 make TESTCASE_ELF=$ARTIFACT_ROOT/src/table2/bugs/basic/testcase; done_wait_continue "CVA6 basic test"
 
 cd $ARTIFACT_ROOT/dep/riscv-isa-sim/build
-$ARTIFACT_ROOT/dep/riscv-isa-sim/build/spike -d --debug-cmd=b19.cmd $ARTIFACT_ROOT/src/table2/bugs/basic/testcase && echo "*** PASSED ***"; done_wait_continue "Spike basic test"
+$ARTIFACT_ROOT/dep/riscv-isa-sim/build/spike -l $ARTIFACT_ROOT/src/table2/bugs/basic/testcase && echo "*** PASSED ***"; done_wait_continue "Spike basic test"
 
 popd > /dev/null

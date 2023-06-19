@@ -40,7 +40,7 @@ module CJ #(parameter harts=1, commits=2) (
             $fatal;
         end
         verbose = $test$plusargs("verbose");
-        cosim_init(testcase, verbose);
+        cosim_init({testcase, ".o"}, verbose);
     end
 
     always @(posedge clock) begin

@@ -150,12 +150,12 @@ extern "C" int coverage_collector(unsigned long int cov) {
       gen_hex[1024], testcase_hex[1024];
   uint64_t seed = rand();
   sprintf(gen_cmd,
-          "python3 run.py -o testcase --target rv64gc --test=%s --seed %d "
+          "python3 run.py --target rv64gc --test=%s --seed %d "
           "--output testcase_fig9 "
           "--steps gen",
           dv_test_list[test_index], seed);
   sprintf(compile_cmd,
-          "python3 run.py -o testcase --target rv64gc --test=%s --seed %d "
+          "python3 run.py --target rv64gc --test=%s --seed %d "
           "--output testcase_fig9 "
           "--steps gcc_compile",
           dv_test_list[test_index], seed);

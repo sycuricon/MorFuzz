@@ -2,3 +2,5 @@
 tmp/
 build/
 output/
+morfuzz_bin/
+*-log.txt
