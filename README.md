@@ -3,6 +3,7 @@
 MorFuzz is a generic RISC-V processor fuzzing framework that can efficiently detect software triggerable functional bugs.
 Different from existing works, MorFuzz uses a novel dynamic mutation technique, named Instruction Morphing, to generate diverse and meaningful instruction streams on the fly.
 MorFuzz was evaluated on three famous RISC-V processors (i.e., BOOM, CVA6, and Rocket) and found 17 previously unknown bugs.
+For more details, please see our [Usenix Security 2023 paper](https://www.usenix.org/conference/usenixsecurity23/presentation/xu-jinyan).
 
 This repository only contains libraries and scripts for artifact evaluation.
 You can get the source code of the [starship soc](https://github.com/sycuricon/starship), the [co-simulation framework](https://github.com/sycuricon/riscv-isa-cosim), and the [stimulus template generator](https://github.com/sycuricon/razzle) from their respective repositories.
@@ -73,3 +74,17 @@ To test the basic functionality of MorFuzz, you can run the following command:
 ```
 
 And if the test passes, you can find the `*** PASSED ***` message.
+
+
+### Attribution
+
+```
+@inproceedings{xu2023morfuzz,
+  title={$\{$MorFuzz$\}$: Fuzzing Processor via Runtime Instruction Morphing enhanced Synchronizable Co-simulation},
+  author={Xu, Jinyan and Liu, Yiyuan and He, Sirui and Lin, Haoran and Zhou, Yajin and Wang, Cong},
+  booktitle={32nd USENIX Security Symposium (USENIX Security 23)},
+  pages={1307--1324},
+  year={2023}
+}
+
+```
