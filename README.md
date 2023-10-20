@@ -4,8 +4,8 @@ MorFuzz is a generic RISC-V processor fuzzing framework that can efficiently det
 Different from existing works, MorFuzz uses a novel dynamic mutation technique, named Instruction Morphing, to generate diverse and meaningful instruction streams on the fly.
 MorFuzz was evaluated on three famous RISC-V processors (i.e., BOOM, CVA6, and Rocket) and found 17 previously unknown bugs.
 
-This repository only contains libraries and scripts for artifact evaluation, the complete project will be open source in late July.
-You can get the source code of the [co-simulation framework](https://github.com/sycuricon/riscv-isa-cosim) and the [stimulus template generator](https://github.com/sycuricon/razzle) from their respective repositories.
+This repository only contains libraries and scripts for artifact evaluation.
+You can get the source code of the [starship soc](https://github.com/sycuricon/starship), the [co-simulation framework](https://github.com/sycuricon/riscv-isa-cosim), and the [stimulus template generator](https://github.com/sycuricon/razzle) from their respective repositories.
 
 ## Set-up
 
