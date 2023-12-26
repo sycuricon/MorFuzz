@@ -12,8 +12,7 @@ You can get the source code of the [starship soc](https://github.com/sycuricon/s
 
 > MorFuzz uses Synopsys VCS for RTL simulation, therefore you need to obtain a license to run the scripts in this repository.
 >
-> MorFuzz can theoretically work with different RTL simulators.
-> We will later port MorFuzz to Verilator.
+> Now, the latest MorFuzz can work with Verilator, get more details from the [starship soc](https://github.com/sycuricon/starship).
 
 MorFuzz is evaluated on CentOS 7.9.2009 with the following dependencies:
 
