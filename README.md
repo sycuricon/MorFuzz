@@ -6,7 +6,7 @@ MorFuzz was evaluated on three famous RISC-V processors (i.e., BOOM, CVA6, and R
 For more details, please see our [Usenix Security 2023 paper](https://www.usenix.org/conference/usenixsecurity23/presentation/xu-jinyan).
 
 This repository only contains libraries and scripts for artifact evaluation.
-You can get the source code of the [starship soc](https://github.com/sycuricon/starship), the [co-simulation framework](https://github.com/sycuricon/riscv-isa-cosim), and the [stimulus template generator](https://github.com/sycuricon/razzle) from their respective repositories.
+You can get the source code of the [starship soc](https://github.com/sycuricon/starship), the [co-simulation framework](https://github.com/sycuricon/riscv-isa-cosim), and the [stimulus template generator](https://github.com/sycuricon/razzle-legacy) from their respective repositories.
 
 ## Set-up
 
